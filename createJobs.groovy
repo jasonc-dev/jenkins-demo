@@ -31,7 +31,7 @@ pipelineJob('theme-park-job-docker') {
                         url 'https://github.com/jasonc-dev/theme-park-api.git'
                     }
                     branch 'master'
-                    scriptPath('Jenkinsfile')
+                    scriptPath('Jenkinsfile-docker')
                 }
             }
         }
