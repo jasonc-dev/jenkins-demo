@@ -6,3 +6,18 @@ pipelineJob('pipelineJob') {
         }
     }
 }
+
+pipelineJob('theme-park-job') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url 'https://github.com/jasonc-dev/theme-park-api.git'
+                    }
+                    branch 'master'
+                }
+            }
+        }
+    }
+}
