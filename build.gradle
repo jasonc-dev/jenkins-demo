@@ -31,35 +31,12 @@ process.waitForProcessOutput(out, System.err)
 String dockerSockGroupId = "root"
 print(dockerSockGroupId)
 
-if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows()) {
-    String extraPrefix = DefaultNativePlatform.getCurrentOperatingSystem().isWindows() ? '/' : ''
-    dockerRun {
-        name "${project.name}"
-        image "${project.name}:${project.version}"
-        ports '8080:8080'
-        clean true
-        daemonize false
-        arguments '-v', "$extraPrefix/var/run/docker.sock:/var/run/docker.sock", '--group-add', dockerSockGroupId
-    }
-} else if (DefaultNativePlatform.getCurrentOperatingSystem().isLinux()) {
-    String extraPrefix = DefaultNativePlatform.getCurrentOperatingSystem().isLinux() ? '/' : ''
-    dockerRun {
-        name "${project.name}"
-        image "${project.name}:${project.version}"
-        ports '8080:8080'
-        clean true
-        daemonize false
-        arguments '-v', "/var/run/docker.sock:/var/run/docker.sock", '--group-add', dockerSockGroupId
-    }
-} else {
-    // OS is mac OS
-    String extraPrefix = DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX() ? '/' : ''
-    dockerRun {
-        name "${project.name}"
-        image "${project.name}:${project.version}"
-        ports '8080:8080'
-        clean true
-        daemonize false
-        arguments '-v', "/var/run/docker.sock:/var/run/docker.sock", '--group-add', dockerSockGroupId
-    }
+String extraPrefix = DefaultNativePlatform.getCurrentOperatingSystem().isWindows() ? '/' : ''
+dockerRun {
+    name "${project.name}"
+    image "${project.name}:${project.version}"
+    ports '8080:8080'
+    clean true
+    daemonize false
+    arguments '-v', "$extraPrefix/var/run/docker.sock:/var/run/docker.sock", '--group-add', dockerSockGroupId
 }
