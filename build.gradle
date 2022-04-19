@@ -27,7 +27,8 @@ if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows()) {
 
 def out = new ByteArrayOutputStream()
 process.waitForProcessOutput(out, System.err)
-String dockerSockGroupId = out.toString().trim()
+//String dockerSockGroupId = out.toString().trim()
+String dockerSockGroupId = "root"
 print(dockerSockGroupId)
 
 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows()) {
@@ -59,6 +60,6 @@ if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows()) {
         ports '8080:8080'
         clean true
         daemonize false
-        arguments '-v', "$extraPrefix/var/run/docker.sock:/var/run/docker.sock", '--group-add', "jenkins"
+        arguments '-v', "$extraPrefix/var/run/docker.sock:/var/run/docker.sock", '--group-add', dockerSockGroupId
     }
 }
