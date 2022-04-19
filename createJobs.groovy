@@ -37,3 +37,19 @@ pipelineJob('theme-park-job-docker') {
         }
     }
 }
+
+pipelineJob('theme-park-job-aws') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url 'https://github.com/jasonc-dev/theme-park-api.git'
+                    }
+                    branch 'master'
+                    scriptPath('Jenkinsfile-aws')
+                }
+            }
+        }
+    }
+}
