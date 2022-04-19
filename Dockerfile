@@ -8,7 +8,7 @@ FROM jenkins/jenkins:2.303.3-jdk11
 USER root
 RUN apt-get update
 RUN curl -fsSL https://get.docker.com/ | sh
-RUN usermod -a -G docker root
+RUN usermod -aG docker root
 RUN newgrp root
 USER root
 
